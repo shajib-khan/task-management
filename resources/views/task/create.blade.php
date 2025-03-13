@@ -8,13 +8,24 @@
         <div class="card">
             <div class="card-header bg-dark text-white">Create Task</div>
             <div class="card-body">
-                
+                <!---name--->
+                <div class="mb-3">
+                    <label for="user_id" class="form-label">Select User:</label>
+                    <select name="user_id" id="user_id" class="form-select" required>
+                        <option value="">-- Choose a User --</option>
+                        @foreach($users as $user)
+                            <option value="{{ $user->id }}" {{$user->id}}>
+                                {{ $user->name }}
+                            </option>
+                        @endforeach
+                    </select>
+                </div>
                 <!-- Title -->
                 <div class="mb-3">
                     <label for="title" class="form-label">Title</label>
                     <input type="text" class="form-control" id="title" name="title" required>
                     @error('email')
-                    <span class="text-danger">{{$message}}</span> 
+                    <span class="text-danger">{{$message}}</span>
                     @enderror
                 </div>
 
@@ -23,7 +34,7 @@
                     <label for="description" class="form-label">Description</label>
                     <textarea class="form-control" id="description" name="description" rows="3" required></textarea>
                     @error('description')
-                    <span class="text-danger">{{$message}}</span> 
+                    <span class="text-danger">{{$message}}</span>
                     @enderror
                 </div>
 
@@ -32,7 +43,7 @@
                     <label for="due_date" class="form-label">Due Date</label>
                     <input type="date" class="form-control" id="due_date" name="due_date" required>
                     @error('due_date')
-                    <span class="text-danger">{{$message}}</span> 
+                    <span class="text-danger">{{$message}}</span>
                     @enderror
                 </div>
 
@@ -43,10 +54,10 @@
                         <option value="low">Low</option>
                         <option value="medium">Medium</option>
                         <option value="high">High</option>
-                        
+
                     </select>
                     @error('priority')
-                        <span class="text-danger">{{$message}}</span> 
+                        <span class="text-danger">{{$message}}</span>
                         @enderror
                 </div>
 
@@ -59,7 +70,7 @@
                         <option value="completed">Completed</option>
                     </select>
                     @error('status')
-                        <span class="text-danger">{{$message}}</span> 
+                        <span class="text-danger">{{$message}}</span>
                         @enderror
                 </div>
 

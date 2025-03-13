@@ -28,3 +28,11 @@ Route::Post('/task-store',[TaskController::class,'store'])->name('store.task');
 Route::get('/edit-task/{task}',[TaskController::class,'edit'])->name('edit.task');
 Route::post('/update-task/{task}',[TaskController::class,'update'])->name('update.task');
 Route::get('/delete-task/{task}',[TaskController::class,'delete'])->name('delete.task');
+
+
+//assign task
+
+Route::post('tasks/{task}/assign', [TaskController::class, 'assign'])->name('tasks.assign');
+Route::post('tasks/{task}/update-status', [TaskController::class, 'updateStatus'])->name('tasks.updateStatus');
+Route::get('/task/{task}', [TaskController::class, 'show'])->name('task.show');
+

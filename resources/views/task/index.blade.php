@@ -35,10 +35,16 @@
 
 
 <a href="{{ route('task.create') }}" class="btn btn-primary mb-2">Create</a>
+@foreach ($tasks as $task)
+    <a href="{{ route('task.show', $task->id) }}" class="btn btn-primary mb-2">Show Task</a>
+@endforeach
+
+
   <table class="table">
       <thead class="thead-dark">
         <tr>
           <th scope="col">#</th>
+          <th scope="col">Name</th>
           <th scope="col">Title</th>
           <th scope="col">Description</th>
           <th scope="col">Due Date</th>
@@ -50,8 +56,8 @@
       <tbody>
         @foreach ($tasks as $task )
         <tr>
-
           <td>{{$task->id}}</td>
+          <td>{{ $task->user->name ?? 'Unassigned' }}</td> <!-- Avoids errors if no user -->
           <td>{{$task->title}}</td>
           <td>{{$task->description}}</td>
           <td>{{$task->due_date}}</td>
@@ -61,10 +67,6 @@
             <a href="{{route('edit.task', $task->id)}}" class="btn btn-primary">Edit</a>
             <a href="{{route('delete.task',$task->id)}}" class="btn btn-danger">Delete</a>
           </td>
-
-
-
-
         </tr>
         @endforeach
       </tbody>
