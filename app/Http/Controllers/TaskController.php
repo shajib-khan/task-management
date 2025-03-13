@@ -44,7 +44,7 @@ class TaskController extends Controller
 }
 
 
-    
+
     public function delete(Task $task)
     {
         $task->delete();
@@ -99,7 +99,9 @@ class TaskController extends Controller
          $task->status = $request->status;
          $task->save();
 
-         return redirect()->back()->with('success', 'Task status updated successfully!');
+         return redirect()->route('task.view')
+                 ->with('success', 'Task status updated successfully!');
+
      }
 
      public function show(Task $task)

@@ -17,59 +17,60 @@
         </div>
     @endif
 </div>
-@if(session()->has('success'))
-<div class="alert alert-success">
-  {{session()->get('success')}}
-</div>
-  @endif
-  @if(session()->has('delete'))
-<div class="alert alert-success">
-  {{session()->get('delete')}}
-</div>
-  @endif
-  @if(session()->has('update'))
-  <div class="alert alert-success">
-    {{session()->get('update')}}
-  </div>
-    @endif
 
+@if(session()->has('success'))
+    <div class="alert alert-success">
+        {{session()->get('success')}}
+    </div>
+@endif
+
+@if(session()->has('delete'))
+    <div class="alert alert-success">
+        {{session()->get('delete')}}
+    </div>
+@endif
+
+@if(session()->has('update'))
+    <div class="alert alert-success">
+        {{session()->get('update')}}
+    </div>
+@endif
 
 <a href="{{ route('task.create') }}" class="btn btn-primary mb-2">Create</a>
-@foreach ($tasks as $task)
-    <a href="{{ route('task.show', $task->id) }}" class="btn btn-primary mb-2">Show Task</a>
-@endforeach
 
 
-  <table class="table">
-      <thead class="thead-dark">
+<table class="table">
+    <thead class="thead-dark">
         <tr>
-          <th scope="col">#</th>
-          <th scope="col">Name</th>
-          <th scope="col">Title</th>
-          <th scope="col">Description</th>
-          <th scope="col">Due Date</th>
-          <th scope="col">Priority</th>
-          <th scope="col">Status</th>
-          <th scope="col">Action</th>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Title</th>
+            <th scope="col">Description</th>
+            <th scope="col">Due Date</th>
+            <th scope="col">Priority</th>
+            <th scope="col">Status</th>
+            <th scope="col">Action</th>
         </tr>
-      </thead>
-      <tbody>
-        @foreach ($tasks as $task )
-        <tr>
-          <td>{{$task->id}}</td>
-          <td>{{ $task->user->name ?? 'Unassigned' }}</td> <!-- Avoids errors if no user -->
-          <td>{{$task->title}}</td>
-          <td>{{$task->description}}</td>
-          <td>{{$task->due_date}}</td>
-          <td>{{$task->priority}}</td>
-          <td>{{$task->status}}</td>
-          <td>
-            <a href="{{route('edit.task', $task->id)}}" class="btn btn-primary">Edit</a>
-            <a href="{{route('delete.task',$task->id)}}" class="btn btn-danger">Delete</a>
-          </td>
-        </tr>
+    </thead>
+    <tbody>
+        @foreach ($tasks as $task)
+            <tr>
+                <td>{{ $task->id }}</td>
+                <td>{{ $task->user->name ?? 'Unassigned' }}</td> <!-- Avoids errors if no user -->
+                <td>{{ $task->title }}</td>
+                <td>{{ $task->description }}</td>
+                <td>{{ $task->due_date }}</td>
+                <td>{{ $task->priority }}</td>
+                <td>{{ $task->status }}</td>
+                <td>
+                    <a href="{{ route('edit.task', $task->id) }}" class="btn btn-primary">Edit</a>
+                    <a href="{{ route('delete.task', $task->id) }}" class="btn btn-danger">Delete</a>
+                    <!-- Show Task button added inside the loop -->
+                    <a href="{{ route('task.show', $task->id) }}" class="btn btn-primary mb-2">Show Task</a>
+                </td>
+            </tr>
         @endforeach
-      </tbody>
-    </table>
+    </tbody>
+</table>
 
 @endsection

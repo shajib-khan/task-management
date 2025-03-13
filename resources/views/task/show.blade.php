@@ -30,7 +30,7 @@
         <div class="mb-3">
             <label for="status" class="form-label">Select Status:</label>
             <select name="status" id="status" class="form-select" required>
-                @foreach(['pending', 'in_progress', 'completed'] as $status)
+                @foreach(['pending', 'in_progress', 'completed', 'cancelled'] as $status)
                     <option value="{{ $status }}" {{ $task->status == $status ? 'selected' : '' }}>
                         {{ ucfirst($status) }}
                     </option>
