@@ -43,5 +43,3 @@ Route::get('/user',[TaskController::class,'userView'])->name('user.view');
 //user change task status
 
 
-
-

@@ -8,7 +8,8 @@ use Illuminate\Http\Request;
 
 class TaskController extends Controller
 {
-    
+    //user status
+
     //user task
     public function userView(){
         $tasks=Task::where('user_id',auth()->id())->get();
@@ -106,8 +107,7 @@ class TaskController extends Controller
          $task->status = $request->status;
          $task->save();
 
-         return redirect()->route('task.view')
-                 ->with('success', 'Task status updated successfully!');
+         return redirect()->back() ->with('success', 'Task status updated successfully!');
 
      }
 

@@ -2,6 +2,11 @@
 
 @section('content')
 <div class="container mt-4">
+    @if(session()->has('success'))
+    <div class="alert alert-success">
+        {{session()->get('success')}}
+    </div>
+@endif
     <!-- Assign Task Section -->
     <h3>Assign Task</h3>
     <form action="{{ route('tasks.assign', $task->id) }}" method="POST">

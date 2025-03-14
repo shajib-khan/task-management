@@ -31,8 +31,9 @@
                 <td>{{ $task->title }}</td>
                 <td>{{ $task->description }}</td>
                 <td>{{ $task->due_date }}</td>
+                <td>{{ $task->status }}</td>
                 <td>{{ $task->priority }}</td>
-               
+
                 <td>
                     <a href="{{ route('task.show', $task->id) }}" class="btn btn-primary">View</a>
                     <a href="{{ route('edit.task', $task->id) }}" class="btn btn-warning">Edit</a>
