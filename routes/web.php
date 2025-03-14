@@ -36,3 +36,12 @@ Route::post('tasks/{task}/assign', [TaskController::class, 'assign'])->name('tas
 Route::post('tasks/{task}/update-status', [TaskController::class, 'updateStatus'])->name('tasks.updateStatus');
 Route::get('/task/{task}', [TaskController::class, 'show'])->name('task.show');
 
+
+//user task
+Route::get('/user',[TaskController::class,'userView'])->name('user.view');
+
+//user change task status
+
+
+
+

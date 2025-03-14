@@ -8,6 +8,13 @@ use Illuminate\Http\Request;
 
 class TaskController extends Controller
 {
+    
+    //user task
+    public function userView(){
+        $tasks=Task::where('user_id',auth()->id())->get();
+        return view('task.user.view', compact('tasks'));
+
+    }
     public function index()
     {
         $tasks = Task::all();
