@@ -4,9 +4,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\ProfileController;
 
-//Route::get('/', function () {
- //   return view('welcome');
-//});
+Route::get('/', function () {
+   return view('welcome');
+});
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -22,24 +22,19 @@ require __DIR__.'/auth.php';
 
 
 //custom route
-Route::get('/',[TaskController::class, 'index'])->name('task.view');
-Route::get('/task-create',[TaskController::class,'create'])->name('task.create');
-Route::Post('/task-store',[TaskController::class,'store'])->name('store.task');
-Route::get('/edit-task/{task}',[TaskController::class,'edit'])->name('edit.task');
-Route::post('/update-task/{task}',[TaskController::class,'update'])->name('update.task');
-Route::get('/delete-task/{task}',[TaskController::class,'delete'])->name('delete.task');
-
+    Route::get('/admin',[TaskController::class, 'index'])->name('task.view');
+    Route::get('/task-create',[TaskController::class,'create'])->name('task.create');
+    Route::Post('/task-store',[TaskController::class,'store'])->name('store.task');
+    Route::get('/edit-task/{task}',[TaskController::class,'edit'])->name('edit.task');
+    Route::post('/update-task/{task}',[TaskController::class,'update'])->name('update.task');
+    Route::get('/delete-task/{task}',[TaskController::class,'delete'])->name('delete.task');
 
 //assign task
-
-Route::post('tasks/{task}/assign', [TaskController::class, 'assign'])->name('tasks.assign');
-Route::post('tasks/{task}/update-status', [TaskController::class, 'updateStatus'])->name('tasks.updateStatus');
-Route::get('/task/{task}', [TaskController::class, 'show'])->name('task.show');
-
+    Route::post('tasks/{task}/assign', [TaskController::class, 'assign'])->name('tasks.assign');
 
 //user task
+Route::get('/user-dashboard',[TaskController::class,'user'])->name('user.dashboard');
 Route::get('/user',[TaskController::class,'userView'])->name('user.view');
-
-//user change task status
-
+Route::post('tasks/{task}/update-status', [TaskController::class, 'updateStatus'])->name('tasks.updateStatus');
+Route::get('/task/{task}', [TaskController::class, 'show'])->name('task.show');
 

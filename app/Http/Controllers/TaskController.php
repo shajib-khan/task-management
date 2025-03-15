@@ -117,6 +117,9 @@ class TaskController extends Controller
     return view('task.show', compact('task', 'users'));
 }
 
-
+public function user()
+{
+    return view('task.user.dashboard');
+}
 
 }
