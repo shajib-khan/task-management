@@ -22,19 +22,26 @@ require __DIR__.'/auth.php';
 
 
 //custom route
+Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/admin',[TaskController::class, 'index'])->name('task.view');
     Route::get('/task-create',[TaskController::class,'create'])->name('task.create');
     Route::Post('/task-store',[TaskController::class,'store'])->name('store.task');
     Route::get('/edit-task/{task}',[TaskController::class,'edit'])->name('edit.task');
     Route::post('/update-task/{task}',[TaskController::class,'update'])->name('update.task');
     Route::get('/delete-task/{task}',[TaskController::class,'delete'])->name('delete.task');
-
-//assign task
+    // Assign Task (Only Admin Can Assign Tasks)
     Route::post('tasks/{task}/assign', [TaskController::class, 'assign'])->name('tasks.assign');
+});
 
 //user task
-Route::get('/user-dashboard',[TaskController::class,'user'])->name('user.dashboard');
-Route::get('/user',[TaskController::class,'userView'])->name('user.view');
+
+Route::middleware(['auth', 'role:user'])->group(function () {
+    Route::get('/user-dashboard',[TaskController::class,'user'])->name('user.dashboard');
+    Route::get('/user',[TaskController::class,'userView'])->name('user.view');
+    Route::get('/task/{task}', [TaskController::class, 'show'])->name('task.show');
+});
+
+
+//need access this route both user & admin
 Route::post('tasks/{task}/update-status', [TaskController::class, 'updateStatus'])->name('tasks.updateStatus');
-Route::get('/task/{task}', [TaskController::class, 'show'])->name('task.show');
 
